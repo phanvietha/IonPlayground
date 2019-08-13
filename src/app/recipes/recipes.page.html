@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{ "abc" | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img [src]="photo" alt="My photo" />
+
+  <input type="file" />
+
+  <video #video width="320" height="240" controls>
+  </video>
+
+  <audio #audio controls></audio>
+
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button (click)="playVideo()">
+        <ion-icon name="photos"></ion-icon>
+      </ion-tab-button>
+
+      <ion-tab-button (click)="captureVIdeo()">
+        <ion-icon name="document"></ion-icon>
+      </ion-tab-button>
+
+      <ion-tab-button (click)="accessCamera()">
+        <ion-icon name="camera"></ion-icon>
+      </ion-tab-button>
+
+      <ion-tab-button (click)="recordAudio()">
+        <ion-icon name="mic"></ion-icon>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
+  <!-- <div class="mt-auto">
+      <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-fab-button>
+                <ion-icon name="photos"></ion-icon>
+              </ion-fab-button>
+            </ion-col>
+            <ion-col>
+              <ion-fab-button>
+                <ion-icon name="document"></ion-icon>
+              </ion-fab-button>
+            </ion-col>
+            
+            <ion-col>
+              <ion-fab>
+                <ion-fab-button>
+                  <ion-icon name="camera"> </ion-icon>
+                </ion-fab-button>
+                <ion-fab-list side="top">
+                  <ion-fab-button>
+                    <ion-icon name="videocam"></ion-icon>
+                  </ion-fab-button>
+      
+                  <ion-fab-button>
+                    <ion-icon name="camera"></ion-icon>
+                  </ion-fab-button>
+                </ion-fab-list>
+              </ion-fab>
+            </ion-col>
+            <ion-col>
+              <ion-fab-button>
+                <ion-icon name="mic"></ion-icon>
+              </ion-fab-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid> -->
+  <!-- </div> -->
+</ion-content>

@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="haMenu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Offers</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button color routerLink="/places/tabs/offers/new">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col >
+        <ion-list>
+          <ion-item *ngFor="let place of places" [routerLink]="[place.id]">
+            <ion-thumbnail slot="start">
+              <ion-img [src]="place.imageUrl"></ion-img>
+            </ion-thumbnail>
+
+            <ion-label>
+              <h2>{{ place.title }}</h2>
+              <p>{{ place.description }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
