@@ -8,7 +8,7 @@
 
     <ion-content>
       <ion-list
-        ><ion-menu-toggle>
+        ><ion-menu-toggle> <!--ion-menu-toggle Help Hide menu when click on item -->
           <ion-item lines="none" routerLink="/places/tabs/discover">
             <ion-icon name="business" slot="start"></ion-icon>
             <ion-label>Discover Places</ion-label>
@@ -21,7 +21,9 @@
           </ion-item></ion-menu-toggle
         >
         <ion-menu-toggle>
-          <ion-item lines="none" (click)="logout()" button>
+          <!--button Help ion-item behave like button -->
+          <!--lines="none" remove bottom border-->
+          <ion-item lines="none" (click)="logout()" button> 
             <ion-icon name="exit" slot="start"></ion-icon>
             <ion-label>Logout</ion-label>
           </ion-item></ion-menu-toggle
