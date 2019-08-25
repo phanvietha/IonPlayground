@@ -1,0 +1,31 @@
+.file-preview {
+    background-color: rgba($color: #000000, $alpha: 0.8);
+    height: 100%;
+    position: relative;
+}
+
+
+video, audio, img {
+    height: 100%;
+    width: 100%;
+}
+
+.stop-recording {
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    // Sit on top of pill-audio
+    z-index: 101;
+    border-radius: 20px;
+    display: flex;
+    // Vertiacal and Horizontal center
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    // Create box shadow for white background
+    box-shadow: 1px 1px grey, -1px 1px grey;
+    color: white;
+}

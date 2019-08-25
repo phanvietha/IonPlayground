@@ -13,7 +13,7 @@
   <ion-content>
     <ion-list>
       <ion-virtual-scroll [items]="attachedFiles" [approxItemHeight]="72">
-        <ion-item *virtualItem="let attachedFile">
+        <ion-item *virtualItem="let attachedFile" button (click)="previewFile(attachedFile)">
           <ion-thumbnail slot="start">
             <ion-img
               src="https://upload.wikimedia.org/wikipedia/commons/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg"
@@ -31,8 +31,6 @@
       </ion-virtual-scroll>
     </ion-list>
 
-    <ion-input type="file"></ion-input>
-    <input type="file"/>
   </ion-content>
 
   <ion-footer>
@@ -43,7 +41,8 @@
             <ion-icon name="videocam"></ion-icon>
           </ion-tab-button>
 
-          <ion-tab-button (click)="attachFile()">
+          <input #file type="file" (change)="attachFile($event.target.files)" multiple style="display: none"/>
+          <ion-tab-button (click)="file.click()">
             <ion-icon name="document"></ion-icon>
           </ion-tab-button>
 

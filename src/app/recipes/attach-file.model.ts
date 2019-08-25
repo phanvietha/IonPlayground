@@ -5,12 +5,14 @@ export class AttachFile {
   type: string;
   size: number;
   path: string;
+  file;
 
   constructor(file) {
     this.name = file.name;
     this.type = file.type;
     this.size = file.size;
     // Convert from file protocol to localhose protocol
-    this.path = Capacitor.convertFileSrc(file.fullPath);
+    this.path = file.fullPath ? Capacitor.convertFileSrc(file.fullPath) : file.path;
+    this.file = file;
   }
 }

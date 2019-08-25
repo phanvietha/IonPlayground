@@ -27,6 +27,8 @@ import {
   finalize,
   switchMap
 } from "rxjs/operators";
+import { ModalController } from '@ionic/angular';
+import { FilePreviewComponent } from './file-preview/file-preview.component';
 
 @Component({
   selector: "app-recipes",
@@ -47,7 +49,8 @@ export class RecipesPage implements OnInit, AfterViewInit {
     private sanitizer: DomSanitizer,
     private mediaCapture: MediaCapture,
     private media: Media,
-    private file: File
+    private file: File,
+    private modalController: ModalController
   ) {}
 
   ngOnInit() {
@@ -137,7 +140,6 @@ export class RecipesPage implements OnInit, AfterViewInit {
         limit: 1
       })
       .then(videos => {
-        console.log(videos[0]);
         const file = new AttachFile(videos[0]);
         this.attachedFiles = [...this.attachedFiles, file];
       });
@@ -163,7 +165,6 @@ export class RecipesPage implements OnInit, AfterViewInit {
 
   removeAmplitudeListen() {
     this.audioFile.stopRecord();
-    console.log(this.audioFile);
     this.audioFile.play();
     this.amplitude$ = null;
   }
@@ -174,11 +175,32 @@ export class RecipesPage implements OnInit, AfterViewInit {
         limit: 1
       })
       .then(pictures => {
-        console.log(pictures[0]);
         const file = new AttachFile(pictures[0]);
         this.attachedFiles = [...this.attachedFiles, file];
       });
   }
 
-  attachFile() {}
+  attachFile(files: FileList) {
+    const parsedFiles = Array.from(files).map(file => new AttachFile({
+      name: file.name,
+      type: file.type,
+      size: file.size,
+      path: this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(file))
+    }))
+
+    this.attachedFiles = [...this.attachedFiles, ...parsedFiles];
+  }
+
+  async previewFile(file: AttachFile) {
+    console.log(this.attachedFiles);
+    const modal = await this.modalController.create({
+      component: FilePreviewComponent,
+      componentProps: {
+        file: file
+      },
+      showBackdrop: true
+    });
+
+    modal.present();
+  }
 }

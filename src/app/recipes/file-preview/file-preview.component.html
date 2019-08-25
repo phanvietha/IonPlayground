@@ -1,0 +1,18 @@
+<ion-content>
+  <div class="file-preview" [ngSwitch]="fileType">
+    <div class="stop-recording" (click)="dismiss()" button>
+      <ion-icon name="close"></ion-icon>
+    </div>
+    <ng-container *ngSwitchCase="'AUDIO'">
+      <audio [src]="file.path" controls></audio>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'VIDEO'">
+      <video [src]="file.path" controls></video>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'IMAGE'">
+      <img [src]="file.path" [alt]="file.name" />
+    </ng-container>
+  </div>
+</ion-content>
