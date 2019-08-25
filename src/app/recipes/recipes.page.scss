@@ -1,3 +1,65 @@
 .ion-thumbnail {
     --border-radius: 10px;
 }
+
+.pill-audio {
+    background-color: #A696C6;
+    width: 90px;
+    height: 40px;
+    border-radius: 20px;
+    z-index: 100;
+    will-change: transform;
+    opacity: 0;
+    -webkit-transform: translate(-100px, -100px);
+    transform: translate(-100px, -100px);
+    position: absolute;
+    top: 0;
+}
+
+
+.stop-recording {
+    --middle-screenX: 0;
+    --middle-screenY: 0;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    // Sit on top of pill-audio
+    z-index: 101;
+    border-radius: 20px;
+    display: flex;
+    // Vertiacal and Horizontal center
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    // Create box shadow for white background
+    box-shadow: 1px 1px grey, -1px 1px grey;
+    color: white;
+    will-change: transform;
+    opacity: 0;
+    -webkit-transform: translate(-100px, -100px);
+    transform: translate(-100px, -100px);
+
+    // Animation slide in
+    // animation-name: slideIn;
+    animation-duration: 600ms;
+
+    // keep slideIn to css state;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slideIn {
+
+    from {
+        opacity: 0;
+        transform: translate(var(--middle-screenX), calc(var(--middle-screenY) - 50px))
+    }
+
+    to {
+        opacity: 100;
+        transform: translate(var(--middle-screenX), calc(var(--middle-screenY)));
+    }
+}
+

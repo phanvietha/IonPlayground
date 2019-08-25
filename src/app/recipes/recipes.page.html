@@ -1,75 +1,61 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>{{ "abc" | translate }}</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ng-container style="position: relative">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>{{ "abc" | translate }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="pill-audio" id="recordSymbol"></div>
 
-<ion-content>
-  <img [src]="photo" alt="My photo" />
+  <div class="stop-recording coordinate" id="stopRecordSymbol">
+      <ion-icon name="close"></ion-icon>
+  </div>
 
-  <input type="file" />
+  <ion-content>
+    <ion-list>
+      <ion-virtual-scroll [items]="attachedFiles" [approxItemHeight]="72">
+        <ion-item *virtualItem="let attachedFile">
+          <ion-thumbnail slot="start">
+            <ion-img
+              src="https://upload.wikimedia.org/wikipedia/commons/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg"
+            ></ion-img>
+          </ion-thumbnail>
 
-  <video #video width="320" height="240" controls>
-  </video>
+          <ion-label>
+            <h3>{{ attachedFile.name }}</h3>
+            <p>{{ attachedFile.type }}</p>
+          </ion-label>
+          <ion-label slot="end">
+            <p>{{ attachedFile.size }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-virtual-scroll>
+    </ion-list>
 
-  <audio #audio controls></audio>
+    <ion-input type="file"></ion-input>
+    <input type="file"/>
+  </ion-content>
 
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button (click)="playVideo()">
-        <ion-icon name="photos"></ion-icon>
-      </ion-tab-button>
+  <ion-footer>
+    <ion-toolbar>
+      <ion-tabs>
+        <ion-tab-bar slot="bottom">
+          <ion-tab-button (click)="captureVideo()">
+            <ion-icon name="videocam"></ion-icon>
+          </ion-tab-button>
 
-      <ion-tab-button (click)="captureVIdeo()">
-        <ion-icon name="document"></ion-icon>
-      </ion-tab-button>
+          <ion-tab-button (click)="attachFile()">
+            <ion-icon name="document"></ion-icon>
+          </ion-tab-button>
 
-      <ion-tab-button (click)="accessCamera()">
-        <ion-icon name="camera"></ion-icon>
-      </ion-tab-button>
+          <ion-tab-button (click)="takePicture()">
+            <ion-icon name="camera"></ion-icon>
+          </ion-tab-button>
 
-      <ion-tab-button (click)="recordAudio()">
-        <ion-icon name="mic"></ion-icon>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
-
-  <!-- <div class="mt-auto">
-      <ion-grid>
-          <ion-row>
-            <ion-col>
-              <ion-fab-button>
-                <ion-icon name="photos"></ion-icon>
-              </ion-fab-button>
-            </ion-col>
-            <ion-col>
-              <ion-fab-button>
-                <ion-icon name="document"></ion-icon>
-              </ion-fab-button>
-            </ion-col>
-            
-            <ion-col>
-              <ion-fab>
-                <ion-fab-button>
-                  <ion-icon name="camera"> </ion-icon>
-                </ion-fab-button>
-                <ion-fab-list side="top">
-                  <ion-fab-button>
-                    <ion-icon name="videocam"></ion-icon>
-                  </ion-fab-button>
-      
-                  <ion-fab-button>
-                    <ion-icon name="camera"></ion-icon>
-                  </ion-fab-button>
-                </ion-fab-list>
-              </ion-fab>
-            </ion-col>
-            <ion-col>
-              <ion-fab-button>
-                <ion-icon name="mic"></ion-icon>
-              </ion-fab-button>
-            </ion-col>
-          </ion-row>
-        </ion-grid> -->
-  <!-- </div> -->
-</ion-content>
+          <ion-tab-button id="recordBtn">
+            <ion-icon name="mic"></ion-icon>
+          </ion-tab-button>
+        </ion-tab-bar>
+      </ion-tabs>
+    </ion-toolbar>
+  </ion-footer>
+</ng-container>
